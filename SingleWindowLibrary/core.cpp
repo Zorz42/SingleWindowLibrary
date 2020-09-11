@@ -19,7 +19,7 @@ void Swl::init() {
         std::cout << "Failed to create renderer!" << std::endl;
 }
 
-int SDL_main(int argv, char** args) {
+int main(int argv, char** args) {
     if_dev(true) std::cout << "Developer mode enabled. This text should not show up in released app, only in developer testing!" << std::endl;
     SDL_Init(SDL_INIT_EVERYTHING);
     preInit();
