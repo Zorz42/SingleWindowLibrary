@@ -15,7 +15,7 @@
 void preInit();
 void postInit();
 
-int main();
+int main(int argv, char** args);
 
 class Swl {
 public:
@@ -53,7 +53,7 @@ private:
     scene* _current_scene{nullptr};
     
     void init();
-    friend int main();
+    friend int main(int argv, char** args);
     
     color _draw_color, _prev_draw_color;
 };

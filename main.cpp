@@ -1,5 +1,4 @@
 #include "swl.h"
-#include <iostream>
 
 void main();
 Swl::scene main_scene(&main);
@@ -15,4 +14,5 @@ void postInit() {
 }
 
 void main() {
+
 }
