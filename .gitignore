@@ -1,0 +1,7 @@
+# Xcode files
+Base.lproj
+Info.plist
+SingleWindowLibrary.entitlements
+
+# MacOS finder settings
+**/.DS_Store
