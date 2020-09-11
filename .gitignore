@@ -5,3 +5,7 @@ SingleWindowLibrary.entitlements
 
 # MacOS finder settings
 **/.DS_Store
+
+# Clion files
+.idea
+cmake-build-debug

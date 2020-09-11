@@ -5,8 +5,11 @@
 //#define SWL_DEVEL
 
 #include "swl.h"
+#undef main
+#include "SDL2/SDL.h"
 
 void preInit() {
+    SDL_Init(SDL_INIT_EVERYTHING);
     /* this runs before window is being creates and is used to pass window parameters */
 }
 
