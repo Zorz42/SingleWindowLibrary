@@ -11,7 +11,6 @@
 #include <iostream>
 #include "SDL2/SDL.h"
 #include "settings.h"
-//#define main SDL_main
 
 void preInit();
 void postInit();
