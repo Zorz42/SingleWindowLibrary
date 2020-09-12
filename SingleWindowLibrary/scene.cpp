@@ -14,22 +14,21 @@ void Swl::switchScene(scene& scene_) {
 }
 
 void Swl::runScenes() {
-    if(!_current_scene) {
-        if_dev(true) std::cout << "No scene is set! Exiting!" << std::endl;
+    if_dev(!_current_scene) {
+        std::cout << "[Swl::runScenes] No scene is set! Exiting!" << std::endl;
         return;
     }
     
-    bool running = true;
     SDL_Event event;
-    while(running) {
+    while(_running) {
         scene* curr_scene = _current_scene;
         if(curr_scene->initFunction)
             curr_scene->initFunction();
         
-        while(curr_scene == _current_scene && running) {
+        while(curr_scene == _current_scene && _running) {
             while(SDL_PollEvent(&event)) {
                 if(event.type == SDL_QUIT)
-                    running = false;
+                    _running = false;
                 else if(curr_scene->eventFunction)
                     curr_scene->eventFunction(event);
             }
