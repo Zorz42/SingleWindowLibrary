@@ -4,7 +4,14 @@ void main();
 Swl::scene main_scene(&main);
 
 void preInit() {
-    /* This runs before window is being creates and is used to pass window parameters */
+    /* This runs before window is being creates and is used to pass window parameters. */
+    
+    /*
+     Uncomment those to set specific parameters. These are default values.
+     */
+    //swl.window_width = 640;
+    //swl.window_height = 400;
+    //swl.window_caption = "Untitled";
 }
 
 void postInit() {
@@ -14,5 +21,5 @@ void postInit() {
 }
 
 void main() {
-
+    /* this is the main loop which executes every frame */
 }

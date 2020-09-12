@@ -32,6 +32,29 @@ public:
         color background_color{0, 0, 0};
     };
     
+    struct rect {
+        int x, y, w, h;
+        bool filled{true};
+    };
+    
+    struct rect_c : rect {
+        color c;
+    };
+    
+    class texture;
+    void draw(texture& obj);
+    class texture {
+    public:
+        ~texture();
+        void loadFromImage(const std::string path);
+        unsigned short x{0}, y{0};
+    private:
+        void _free();
+        SDL_Texture* _texture{nullptr};
+        unsigned short w, h;
+        friend void Swl::draw(texture& obj);
+    };
+    
     unsigned short window_width{640}, window_height{400};
     std::string window_caption{"Untitled"};
     
@@ -44,6 +67,12 @@ public:
     
     void setPixel(int x, int y, color pixel_color);
     void setPixel(int x, int y);
+    
+    void draw(rect& obj);
+    void draw(rect_c& obj);
+    
+    void draw_rect(int x, int y, int w, int h, bool fill=true);
+    void draw_rect(int x, int y, int w, int h, color c, bool fill=true);
     
 private:
     void runScenes();

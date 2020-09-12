@@ -14,8 +14,8 @@ void Swl::switchScene(scene& scene_) {
 }
 
 void Swl::runScenes() {
-    if(!_current_scene) {
-        if_dev(true) std::cout << "No scene is set! Exiting!" << std::endl;
+    if_dev(!_current_scene) {
+        std::cout << "[Swl::runScenes] No scene is set! Exiting!" << std::endl;
         return;
     }
     
