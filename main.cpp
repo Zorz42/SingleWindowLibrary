@@ -18,12 +18,12 @@ void preInit() {
     //swl.font_size = 32;
     
     // this library already comes with arial.ttf
-    //swl.font_path = "/path/to/font.ttf";
+    //swl.font_path = "/path/to/font.ttf"
 }
 
 void postInit() {
     /* This function is ran after window and renderer are created and is used to create or load images, textures, surfaces, fonts... */
-    
+
     swl.switchScene(main_scene);
 }
 

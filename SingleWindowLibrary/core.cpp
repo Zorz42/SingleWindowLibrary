@@ -47,7 +47,7 @@ void Swl::stop() {
     _running = false;
 }
 
-int main(int argv, char** args) {
+int SDL_main(int argv, char** args) {
     if_dev(true) std::cout << "Developer mode enabled. This text should not show up in released app, only in developer testing!" << std::endl;
     if_dev(SDL_Init(SDL_INIT_EVERYTHING) < 0) std::cout << "[main] SDL failed to initialize!" << std::endl;
     preInit();
