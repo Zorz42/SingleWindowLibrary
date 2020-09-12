@@ -24,6 +24,13 @@ void Swl::init() {
     if_dev(!(IMG_Init(IMG_FLAGS) & IMG_FLAGS)) std::cout << "SDL_image failed to initialize!" << std::endl;
 }
 
+void Swl::quit() {
+    SDL_DestroyRenderer(_renderer);
+    SDL_DestroyWindow(_window);
+    SDL_Quit();
+    IMG_Quit();
+}
+
 int main(int argv, char** args) {
     if_dev(true) std::cout << "Developer mode enabled. This text should not show up in released app, only in developer testing!" << std::endl;
     if_dev(SDL_Init(SDL_INIT_EVERYTHING) < 0) std::cout << "[main] SDL failed to initialize!" << std::endl;
@@ -31,6 +38,7 @@ int main(int argv, char** args) {
     swl.init();
     postInit();
     swl.runScenes();
+    swl.quit();
     return 0;
 }
 

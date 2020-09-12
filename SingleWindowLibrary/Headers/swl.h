@@ -82,6 +82,7 @@ private:
     scene* _current_scene{nullptr};
     
     void init();
+    void quit();
     friend int main(int argv, char** args);
     
     color _draw_color, _prev_draw_color;
