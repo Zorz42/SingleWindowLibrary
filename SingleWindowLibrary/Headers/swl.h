@@ -55,6 +55,7 @@ public:
         SDL_Texture* _texture{nullptr};
         unsigned short w, h;
         friend void Swl::draw(texture& obj);
+        void _loadFromSurface(SDL_Surface* temp_surface);
     };
     
     unsigned short window_width{640}, window_height{400}, font_size{32};

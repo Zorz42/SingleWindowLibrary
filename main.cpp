@@ -3,6 +3,8 @@
 void main();
 Swl::scene main_scene(&main);
 
+Swl::texture text;
+
 void preInit() {
     /* This runs before window is being creates and is used to pass window parameters. */
     

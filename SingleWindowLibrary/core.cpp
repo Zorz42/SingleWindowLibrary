@@ -32,6 +32,8 @@ void Swl::init() {
         if_dev(!_font)
             std::cout << "[Swl::init] Failed to load font!" << std::endl;
     }
+    else if_dev(true)
+        std::cout << "[Swl::init] Font did not load!" << std::endl;
 }
 
 void Swl::quit() {
