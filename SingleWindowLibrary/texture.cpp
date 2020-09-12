@@ -35,3 +35,17 @@ void Swl::draw(texture& obj) {
     SDL_Rect temp_rect = {obj.x, obj.y, obj.w, obj.h};
     SDL_RenderCopy(_renderer, obj._texture, nullptr, &temp_rect);
 }
+
+void Swl::texture::loadFromText(const std::string text, color c) {
+    _free();
+    SDL_Surface* temp_surface = TTF_RenderText_Solid(swl._font, text.c_str(), {c.r, c.g, c.b});
+    if_dev(!temp_surface) std::cout << "[Swl::texture::loadFromText] Image did not load to surface!" << std::endl;
+    
+    w = temp_surface->w;
+    h = temp_surface->h;
+    
+    _texture = SDL_CreateTextureFromSurface(swl._renderer, temp_surface);
+    if_dev(!_texture) std::cout << "[Swl::texture::loadFromText] Surface did not convert to texture!" << std::endl;
+    
+    SDL_FreeSurface(temp_surface);
+}

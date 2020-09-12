@@ -21,7 +21,17 @@ void Swl::init() {
         std::cout << "[Swl::init] Failed to create renderer!" << std::endl;
     
 #define IMG_FLAGS IMG_INIT_PNG
-    if_dev(!(IMG_Init(IMG_FLAGS) & IMG_FLAGS)) std::cout << "SDL_image failed to initialize!" << std::endl;
+    int result = IMG_Init(IMG_FLAGS);
+    if_dev(!(result & IMG_FLAGS)) std::cout << "[Swl::init] SDL_image failed to initialize!" << std::endl;
+    
+    result = TTF_Init();
+    if_dev(result == -1) std::cout << "[Swl::init] SDL_ttf failed to initialize!" << std::endl;
+    
+    if(load_font) {
+        _font = TTF_OpenFont(font_path.c_str(), font_size);
+        if_dev(!_font)
+            std::cout << "[Swl::init] Failed to load font!" << std::endl;
+    }
 }
 
 void Swl::quit() {
@@ -29,6 +39,10 @@ void Swl::quit() {
     SDL_DestroyWindow(_window);
     SDL_Quit();
     IMG_Quit();
+}
+
+void Swl::stop() {
+    _running = false;
 }
 
 int main(int argv, char** args) {

@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "SDL2/SDL.h"
+#include "SDL2_ttf/SDL_ttf.h"
 #include "settings.h"
 
 void preInit();
@@ -47,6 +48,7 @@ public:
     public:
         ~texture();
         void loadFromImage(const std::string path);
+        void loadFromText(const std::string text, color c);
         unsigned short x{0}, y{0};
     private:
         void _free();
@@ -55,8 +57,11 @@ public:
         friend void Swl::draw(texture& obj);
     };
     
-    unsigned short window_width{640}, window_height{400};
-    std::string window_caption{"Untitled"};
+    unsigned short window_width{640}, window_height{400}, font_size{32};
+    std::string window_caption{"Untitled"}, font_path;
+    bool load_font{false};
+    
+    void stop();
     
     void switchScene(scene& scene_);
     
@@ -78,6 +83,7 @@ private:
     void runScenes();
     SDL_Window* _window{nullptr};
     SDL_Renderer* _renderer{nullptr};
+    TTF_Font* _font{nullptr};
     
     scene* _current_scene{nullptr};
     
@@ -86,6 +92,7 @@ private:
     friend int main(int argv, char** args);
     
     color _draw_color, _prev_draw_color;
+    bool _running{true};
 };
 
 inline Swl swl;

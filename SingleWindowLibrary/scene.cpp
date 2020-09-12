@@ -19,17 +19,16 @@ void Swl::runScenes() {
         return;
     }
     
-    bool running = true;
     SDL_Event event;
-    while(running) {
+    while(_running) {
         scene* curr_scene = _current_scene;
         if(curr_scene->initFunction)
             curr_scene->initFunction();
         
-        while(curr_scene == _current_scene && running) {
+        while(curr_scene == _current_scene && _running) {
             while(SDL_PollEvent(&event)) {
                 if(event.type == SDL_QUIT)
-                    running = false;
+                    _running = false;
                 else if(curr_scene->eventFunction)
                     curr_scene->eventFunction(event);
             }
