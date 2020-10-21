@@ -80,6 +80,8 @@ public:
     void draw_rect(int x, int y, int w, int h, bool fill=true);
     void draw_rect(int x, int y, int w, int h, color c, bool fill=true);
     
+    void goFullscreen();
+    
 private:
     void runScenes();
     SDL_Window* _window{nullptr};
@@ -94,6 +96,8 @@ private:
     
     color _draw_color, _prev_draw_color;
     bool _running{true};
+    
+    Uint32 window_flags{SDL_WINDOW_SHOWN};
 };
 
 inline Swl swl;

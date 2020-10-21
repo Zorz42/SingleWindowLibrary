@@ -12,9 +12,17 @@
 #undef main
 
 void Swl::init() {
-    _window = SDL_CreateWindow(window_caption.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, window_width, window_height, SDL_WINDOW_SHOWN);
+    _window = SDL_CreateWindow(window_caption.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, window_width, window_height, window_flags);
     if_dev(!_window)
         std::cout << "[Swl::init] Failed to create window!" << std::endl;
+    
+    if(window_flags & SDL_WINDOW_FULLSCREEN_DESKTOP) {
+        SDL_DisplayMode display_mode;
+        int result = SDL_GetCurrentDisplayMode(0, &display_mode);
+        if_dev(result) std::cout << "[Swl::init] Could not get display mode!" << std::endl;
+        window_width = display_mode.w;
+        window_height = display_mode.h;
+    }
     
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
     if_dev(!_renderer)
@@ -80,4 +88,8 @@ void Swl::setPixel(int x, int y, color pixel_color) {
 
 void Swl::setPixel(int x, int y) {
     SDL_RenderDrawPoint(_renderer, x, y);
+}
+
+void Swl::goFullscreen() {
+    window_flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 }
