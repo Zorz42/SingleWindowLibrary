@@ -45,3 +45,4 @@ void Swl::runScenes() {
             curr_scene->closeFunction();
     }
 }
+
