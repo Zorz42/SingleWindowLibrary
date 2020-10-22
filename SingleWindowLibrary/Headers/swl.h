@@ -107,7 +107,7 @@ inline Swl swl;
 #ifdef SWL_DEVEL
 #define if_dev(condition) if(condition)
 #else
-#define if_dev(condition) if(false)
+#define if_dev(condition) if(condition && false)
 #endif
 
 #endif /* swl_h */

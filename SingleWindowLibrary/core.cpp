@@ -18,8 +18,7 @@ void Swl::init() {
     
     if(window_flags & SDL_WINDOW_FULLSCREEN_DESKTOP) {
         SDL_DisplayMode display_mode;
-        int result = SDL_GetCurrentDisplayMode(0, &display_mode);
-        if_dev(result) std::cout << "[Swl::init] Could not get display mode!" << std::endl;
+        if_dev(SDL_GetCurrentDisplayMode(0, &display_mode)) std::cout << "[Swl::init] Could not get display mode!" << std::endl;
         window_width = display_mode.w;
         window_height = display_mode.h;
     }
