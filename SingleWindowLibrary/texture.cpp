@@ -40,6 +40,14 @@ void Swl::texture::loadFromImage(const std::string path) {
 }
 
 void Swl::texture::loadFromText(const std::string text, color c) {
-    if_dev(!swl._font) std::cout << "[Swl::texture::loadFromText] Font is not even loaded while trying to render !" << std::endl;
+    if_dev(!swl._font) std::cout << "[Swl::texture::loadFromText] Font is not even loaded while trying to render!" << std::endl;
     _loadFromSurface(TTF_RenderText_Solid(swl._font, text.c_str(), {c.r, c.g, c.b}));
+}
+
+unsigned short Swl::texture::getHeight() {
+    return h;
+}
+
+unsigned short Swl::texture::getWidth() {
+    return w;
 }

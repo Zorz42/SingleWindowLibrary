@@ -50,6 +50,8 @@ public:
         void loadFromImage(const std::string path);
         void loadFromText(const std::string text, color c);
         unsigned short x{0}, y{0};
+        unsigned short getWidth();
+        unsigned short getHeight();
     private:
         void _free();
         SDL_Texture* _texture{nullptr};
