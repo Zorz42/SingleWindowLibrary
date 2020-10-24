@@ -65,6 +65,7 @@ public:
     void stop();
     
     void switchScene(scene& scene_);
+    scene& getCurrScene();
     
     void setDrawColor(color draw_color);
     
@@ -82,6 +83,8 @@ public:
     
     void goFullscreen();
     
+    void enableVsync();
+    
 private:
     void runScenes();
     SDL_Window* _window{nullptr};
@@ -97,7 +100,8 @@ private:
     color _draw_color, _prev_draw_color;
     bool _running{true};
     
-    Uint32 window_flags{SDL_WINDOW_SHOWN};
+    Uint32 _window_flags{SDL_WINDOW_SHOWN};
+    Uint32 _renderer_flags{SDL_RENDERER_ACCELERATED};
 };
 
 inline Swl swl;

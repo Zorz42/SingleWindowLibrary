@@ -13,6 +13,10 @@ void Swl::switchScene(scene& scene_) {
     _current_scene = &scene_;
 }
 
+Swl::scene& Swl::getCurrScene() {
+    return *_current_scene;
+}
+
 void Swl::runScenes() {
     if_dev(!_current_scene) {
         std::cout << "[Swl::runScenes] No scene is set! Exiting!" << std::endl;
