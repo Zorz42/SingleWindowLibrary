@@ -6,20 +6,34 @@
 //
 
 #include "swl.h"
+#include <SDL2_gfx/SDL2_gfxPrimitives.h>
 
 void Swl::draw(rect& obj) {
-    if(obj.filled)
-        SDL_RenderFillRect(_renderer, (SDL_Rect*)((void*)&obj));
-    else
-        SDL_RenderDrawRect(_renderer, (SDL_Rect*)((void*)&obj));
+    if(obj.corner_radius) {
+        if(obj.filled) {
+            filledPieRGBA(swl._renderer, obj.x + obj.corner_radius, obj.y + obj.corner_radius, obj.corner_radius, 180, 270, _draw_color.r, _draw_color.g, _draw_color.b, 255);
+            filledPieRGBA(swl._renderer, obj.x + obj.w - obj.corner_radius, obj.y + obj.corner_radius, obj.corner_radius, 270, 0, _draw_color.r, _draw_color.g, _draw_color.b, 255);
+            filledPieRGBA(swl._renderer, obj.x + obj.corner_radius, obj.y + obj.h - obj.corner_radius, obj.corner_radius, 90, 180, _draw_color.r, _draw_color.g, _draw_color.b, 255);
+            filledPieRGBA(swl._renderer, obj.x + obj.w - obj.corner_radius, obj.y + obj.h - obj.corner_radius, obj.corner_radius, 0, 90, _draw_color.r, _draw_color.g, _draw_color.b, 255);
+            draw_rect(obj.x + obj.corner_radius, obj.y, obj.w - obj.corner_radius * 2, obj.corner_radius);
+            draw_rect(obj.x + obj.corner_radius, obj.y + obj.h - obj.corner_radius, obj.w - obj.corner_radius * 2, obj.corner_radius);
+            draw_rect(obj.x, obj.y + obj.corner_radius, obj.w, obj.h - obj.corner_radius * 2);
+        }
+        else {
+            
+        }
+    }
+    else {
+        if(obj.filled)
+            SDL_RenderFillRect(_renderer, (SDL_Rect*)((void*)&obj));
+        else
+            SDL_RenderDrawRect(_renderer, (SDL_Rect*)((void*)&obj));
+    }
 }
 
 void Swl::draw(rect_c& obj) {
     swl.pushDrawColor(obj.c);
-    if(obj.filled)
-        SDL_RenderFillRect(_renderer, (SDL_Rect*)((void*)&obj));
-    else
-        SDL_RenderDrawRect(_renderer, (SDL_Rect*)((void*)&obj));
+    draw(*(rect*)(void*)&obj);
     swl.popDrawColor();
 }
 

@@ -35,6 +35,7 @@ public:
     
     struct rect {
         int x, y, w, h;
+        unsigned short corner_radius{0};
         bool filled{true};
     };
     
