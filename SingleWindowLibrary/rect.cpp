@@ -15,9 +15,15 @@ void Swl::draw(rect& obj) {
             filledPieRGBA(swl._renderer, obj.x + obj.w - obj.corner_radius, obj.y + obj.corner_radius, obj.corner_radius, 270, 0, _draw_color.r, _draw_color.g, _draw_color.b, 255);
             filledPieRGBA(swl._renderer, obj.x + obj.corner_radius, obj.y + obj.h - obj.corner_radius, obj.corner_radius, 90, 180, _draw_color.r, _draw_color.g, _draw_color.b, 255);
             filledPieRGBA(swl._renderer, obj.x + obj.w - obj.corner_radius, obj.y + obj.h - obj.corner_radius, obj.corner_radius, 0, 90, _draw_color.r, _draw_color.g, _draw_color.b, 255);
+            
             draw_rect(obj.x + obj.corner_radius, obj.y, obj.w - obj.corner_radius * 2, obj.corner_radius);
             draw_rect(obj.x + obj.corner_radius, obj.y + obj.h - obj.corner_radius, obj.w - obj.corner_radius * 2, obj.corner_radius);
             draw_rect(obj.x, obj.y + obj.corner_radius, obj.w, obj.h - obj.corner_radius * 2);
+            
+            /*aacircleRGBA(swl._renderer, obj.x + obj.corner_radius, obj.y + obj.corner_radius, obj.corner_radius - 1, _draw_color.r, _draw_color.g, _draw_color.b, 255);
+            aacircleRGBA(swl._renderer, obj.x + obj.w - obj.corner_radius, obj.y + obj.corner_radius, obj.corner_radius - 1, _draw_color.r, _draw_color.g, _draw_color.b, 255);
+            aacircleRGBA(swl._renderer, obj.x + obj.corner_radius, obj.y + obj.h - obj.corner_radius, obj.corner_radius - 1, _draw_color.r, _draw_color.g, _draw_color.b, 255);
+            aacircleRGBA(swl._renderer, obj.x + obj.w - obj.corner_radius, obj.y + obj.h - obj.corner_radius, obj.corner_radius - 1, _draw_color.r, _draw_color.g, _draw_color.b, 255);*/ // too laggy
         }
         else {
             
