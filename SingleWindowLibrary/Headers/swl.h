@@ -47,16 +47,16 @@ public:
     void draw(texture& obj);
     class texture {
     public:
+        texture(const texture& old_texture);
+        texture() = default;
         ~texture();
         void loadFromImage(const std::string path);
-        void loadFromText(const std::string text, color c);
-        unsigned short x{0}, y{0};
-        unsigned short getWidth();
-        unsigned short getHeight();
+        void loadFromText(const std::string text, color c, bool smooth=false);
+        short x{0}, y{0};
+        unsigned short w, h;
     private:
         void _free();
         SDL_Texture* _texture{nullptr};
-        unsigned short w, h;
         friend void Swl::draw(texture& obj);
         void _loadFromSurface(SDL_Surface* temp_surface);
     };

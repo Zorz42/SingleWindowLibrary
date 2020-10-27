@@ -39,15 +39,20 @@ void Swl::texture::loadFromImage(const std::string path) {
     _loadFromSurface(IMG_Load(path.c_str()));
 }
 
-void Swl::texture::loadFromText(const std::string text, color c) {
+void Swl::texture::loadFromText(const std::string text, color c, bool smooth) {
     if_dev(!swl._font) std::cout << "[Swl::texture::loadFromText] Font is not even loaded while trying to render!" << std::endl;
-    _loadFromSurface(TTF_RenderText_Solid(swl._font, text.c_str(), {c.r, c.g, c.b}));
+    if(smooth)
+        _loadFromSurface(TTF_RenderText_Blended(swl._font, text.c_str(), {c.r, c.g, c.b}));
+    else
+        _loadFromSurface(TTF_RenderText_Solid(swl._font, text.c_str(), {c.r, c.g, c.b}));
 }
 
-unsigned short Swl::texture::getHeight() {
-    return h;
-}
-
-unsigned short Swl::texture::getWidth() {
-    return w;
+Swl::texture::texture(const Swl::texture& old_texture) {
+    x = old_texture.x;
+    y = old_texture.y;
+    w = old_texture.w;
+    h = old_texture.h;
+    _texture = old_texture._texture;
+    void* texture = (void*)&old_texture._texture;
+    *(SDL_Texture**)texture = nullptr;
 }
