@@ -53,6 +53,5 @@ Swl::texture::texture(const Swl::texture& old_texture) {
     w = old_texture.w;
     h = old_texture.h;
     _texture = old_texture._texture;
-    void* texture = (void*)&old_texture._texture;
-    *(SDL_Texture**)texture = nullptr;
+    *(SDL_Texture**)(void*)&old_texture._texture = nullptr;
 }
